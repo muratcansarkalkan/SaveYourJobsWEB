@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Simple UI Search Engine for LinkedIn
+        </title>
+    </head>
+    <body>
+
+        <form action="/output/" method="post">
+            {% csrf_token %}
+            <p><input type="text" name="query" placeholder="Search by title, skill or company" required></p>
+            {{data}}
+            <p><button type="submit">Send</button></p>
+        </form>
+
+    </body>
+</html>
