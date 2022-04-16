@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Simple UI Search Engine for LinkedIn
+        </title>
+        <meta charset="utf-8">
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js">
+        </script>
+        <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js">
+        </script>
+    </head>
+    <body onload="brython()">
+
+        <script type="text/python">
+            from browser import document
+            from requests import request
+            import jobportal
+            import urllib.request, urllib.parse, urllib.error
+            import ssl
+            from bs4 import BeautifulSoup
+            import json
+            
+            def engine(query):
+                # Ignore SSL certificate errors
+                ctx = ssl.create_default_context()
+                ctx.check_hostname = False
+                ctx.verify_mode = ssl.CERT_NONE
+            
+                # Base job searching link
+                link = "https://www.linkedin.com/jobs/search/"
+            
+                # The query function
+                # Define search filter and search settings
+                searchfilter = []
+                searchsettings = ""
+                # Define query and convert to URL format
+                query = urllib.parse.quote(query)
+            
+                # If query exists then filter is appended as keywords=query
+                if len(query) > 0:
+                    searchfilter.append("keywords="+query)
+            
+                searchsettings = searchsettings+searchfilter[0]
+                searchfunc = searchsettings
+            
+                if len(searchfunc) > 0:
+                    link = link+"?"+searchfunc
+            
+                try:
+                    html = urllib.request.urlopen(link, context=ctx).read()
+                    soup = BeautifulSoup(html,'lxml')
+                    result = jobportal.LinkedinSearch.parser(soup)
+                    jsonStr = json.dumps([i.__dict__ for i in result], indent=1)
+            
+                    with open('json_data.json', 'w') as outfile:
+                        outfile.write(jsonStr)
+            
+                    # result = []
+            
+                    # for i in range(0,len(data)-1):
+                    #     title = data[i].title
+                    #     result.append(title)
+            
+                except:
+                    result = ("No matching jobs found.")
+            
+                return result
+            engine = engine("Software")
+            
+            document <= result</script>            
+        
+    </body>
+</html>

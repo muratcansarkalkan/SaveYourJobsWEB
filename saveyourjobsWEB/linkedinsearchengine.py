@@ -35,6 +35,16 @@ def engine(query):
         html = urllib.request.urlopen(link, context=ctx).read()
         soup = BeautifulSoup(html,'lxml')
         result = jobportal.LinkedinSearch.parser(soup)
+        # jsonStr = json.dumps([i.__dict__ for i in result], indent=1)
+
+        # with open('json_data.json', 'w') as outfile:
+        #     outfile.write(jsonStr)
+
+        # result = []
+
+        # for i in range(0,len(data)-1):
+        #     title = data[i].title
+        #     result.append(title)
 
     except:
         result = ("No matching jobs found.")

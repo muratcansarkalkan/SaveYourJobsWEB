@@ -10,9 +10,27 @@
         <form action="/output/" method="post">
             {% csrf_token %}
             <p><input type="text" name="query" placeholder="Search by title, skill or company" required></p>
-            {{data}}
             <p><button type="submit">Send</button></p>
+            <table>
+            <tr>
+                <th>Title</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Link</th>
+            </tr>
+            
+                {% for load in loader %}
+            <tr>
+                <td>{{ load.title }}</td>
+                <td>{{ load.company }}</td>
+                <td>{{ load.location }} </td>
+                <td><a href="{{ load.link }}">Click!</a></td>
+            </tr>
+                {% endfor %}
+            
+           
+        </table>
         </form>
-
+          
     </body>
 </html>
