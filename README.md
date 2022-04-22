@@ -2,6 +2,14 @@
 
 This tutorial explains how to get job results from LinkedIn.
 
+<h3>Changelog:</h3>
+
+<ul>
+  <li>04/09/22: Initial commit</li>
+  <li>04/16/22: Fixed UI and Data structure, a better CSS use</li>
+  <li>04/22/22: Added location option</li>
+</ul>
+
 <h3>Prerequisites:</h3>
 
 <ul>
