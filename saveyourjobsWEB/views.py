@@ -11,7 +11,8 @@ def button(request):
 def output(request):
     if request.method == "POST":
         inp = request.POST.get('query')
-        data = linkedinsearchengine.engine(inp)
+        loc = request.POST.get('location')
+        data = linkedinsearchengine.engine(inp, loc)
         jsonStr = json.dumps([i.__dict__ for i in data], indent=1)
 
         path = os.getcwd()

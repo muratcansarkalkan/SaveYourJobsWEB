@@ -29,7 +29,7 @@ def fullresults(result, limit, fullresult):
             break
     return fullresult
 
-def engine(query):
+def engine(query,location):
     fullresult = []
     # Base job searching link
     link = "https://www.linkedin.com/jobs/search/"
@@ -45,9 +45,21 @@ def engine(query):
     # If query exists then filter is appended as keywords=query
     if len(query) > 0:
         searchfilter.append("keywords="+query)
+    
+    location = urllib.parse.quote(location)
+    if len(location) > 0:
+        searchfilter.append("location="+location)
+    
+    if len(searchfilter) == 1:
+        searchsettings = searchsettings+searchfilter[0]
+    else:
+        for i in range(0, len(searchfilter)):
+            searchsettings = searchsettings+searchfilter[i]+"&"
+    
+    searchsettings = searchsettings.rstrip("&")
 
-    searchsettings = searchsettings+searchfilter[0]
     searchfunc = searchsettings
+    
     limit = 40
 
     if len(searchfunc) > 0:
