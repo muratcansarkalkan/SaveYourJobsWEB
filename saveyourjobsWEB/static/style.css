@@ -1,0 +1,59 @@
+.flex-item{
+    flex-grow: 0.03;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+.container .flex-item{
+    float: left;
+    display: block;
+    padding: 5px;
+}
+
+.searchline{
+    margin: auto;
+    background-color: lightblue;
+    width: 1000px;
+    height: 100px;
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+table {
+    border-collapse: collapse;
+    margin: auto;
+  }
+  
+  table, td, th {
+    border: 1px solid;
+  }
+
+  td {
+    padding: 2px 5px;
+  }
+
+#tabletitle {
+    text-align: center;
+    width: 300px;
+}
+
+#tablecomp {
+    text-align: center;
+    width: 200px;
+}
+
+#tableloc {
+    text-align: center;
+    width: 200px;
+}
+
+#tablelink {
+    text-align: center;
+    width: 50px;
+}
